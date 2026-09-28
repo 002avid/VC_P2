@@ -9,8 +9,13 @@ Este repositorio contiene la segunda práctica de la asignatura Visión por Comp
 
 ## Contenido del repositorio
 
-- `VC_P2.ipynb`: cuaderno principal de la práctica.
-- `mandril.jpg`: imagen utilizada para las pruebas de detección de bordes, umbralizado y conteo de píxeles.
+- `VC_P2.ipynb`: cuaderno principal donde se desarrolla la práctica y se encuentran las distintas tareas realizadas.
+- `mandril.jpg`: imagen utilizada para las pruebas.
+- `resultados/`: carpeta que contiene las imágenes generadas durante la práctica.
+  - `canny_filas.jpg`: resultado del análisis por filas sobre la imagen obtenida mediante Canny.
+  - `sobel_filas_columnas.jpg`: filas y columnas que alcanzan al menos el 90 % del máximo sobre la imagen de Sobel umbralizada.
+  - `sobel_graficas.jpg`: gráficas del número de píxeles de borde encontrados por filas y columnas.
+  - `sobel_vs_canny.jpg`: comparación visual entre los resultados obtenidos mediante Sobel umbralizado y Canny.
 
 ## Instalación y ejecución
 
