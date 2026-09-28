@@ -44,26 +44,38 @@ Los valores más altos de la gráfica corresponden a las filas en las que Canny 
 
 ## TAREA: umbralizado de Sobel y conteo por filas y columnas
 
-Antes de resolver la tarea se calcula la imagen de bordes mediante Sobel. Primero se suaviza la imagen en escala de grises con una gaussiana usando `cv2.GaussianBlur()`. Después se obtienen las derivadas horizontal y vertical con `cv2.Sobel()`, y ambas se combinan con `cv2.add()`.
+En esta tarea se utiliza el operador Sobel para detectar cambios de intensidad en la imagen. Antes de aplicar Sobel, la imagen en escala de grises se suaviza mediante un filtro gaussiano. Posteriormente se calculan las derivadas horizontal y vertical y se combinan para obtener la imagen de bordes.
 
-Como el resultado de Sobel queda en tipo `float64` y contiene valores positivos y negativos, se convierte a 8 bits mediante `cv2.convertScaleAbs()`. Sobre esta imagen se aplica un umbralizado binario con valor de umbral 100:
+Como el resultado de Sobel contiene valores positivos y negativos, se convierte a una imagen de 8 bits mediante `cv2.convertScaleAbs()`. Sobre esta imagen se aplica posteriormente un umbral de valor **100**, obteniendo una imagen binaria en la que los píxeles pertenecientes a los bordes tienen valor 255 y el resto valor 0.
 
-```python
-_, sobelUmbralizado = cv2.threshold(sobel8, 100, 255, cv2.THRESH_BINARY)
-```
-
-Después se cuentan los píxeles no nulos por filas y por columnas usando `np.count_nonzero()`. Con estos conteos se calculan los valores máximos y se seleccionan las filas y columnas cuyo número de píxeles no nulos es mayor o igual que el 90 % del máximo correspondiente.
+A partir de esta imagen se utiliza `np.count_nonzero()` para contar el número de píxeles blancos presentes en cada fila y columna. Después se seleccionan aquellas filas y columnas que contienen al menos el 90 % del máximo correspondiente.
 
 En la ejecución realizada se obtiene:
 
-- Máximo de píxeles por fila: 216.
-- Máximo de píxeles por columna: 219.
-- Filas por encima del 90 % del máximo: 2, 3, 4, 5, 8, 11, 12, 19, 20, 24, 51, 80, 81, 82, 83, 84, 85, 87 y 100.
-- Columnas por encima del 90 % del máximo: 104, 105, 127 y 288.
+- Máximo de píxeles por fila: **216**.
+- Máximo de píxeles por columna: **219**.
+- Filas por encima del 90 % del máximo: **2, 3, 4, 5, 8, 11, 12, 19, 20, 24, 51, 80, 81, 82, 83, 84, 85, 87 y 100**.
+- Columnas por encima del 90 % del máximo: **104, 105, 127 y 288**.
 
-Para remarcar el resultado, se crea una copia en color de la imagen de Sobel umbralizada. Sobre ella se dibujan líneas horizontales rojas para las filas seleccionadas y líneas verticales azules para las columnas seleccionadas. También se generan dos gráficas: una para el conteo por filas y otra para el conteo por columnas, incluyendo una línea horizontal que marca el umbral del 90 %.
+### Resultado
 
-Finalmente se comparan visualmente los resultados de Sobel umbralizado y Canny. Sobel, tras el umbralizado, produce bordes más gruesos y con mayor cantidad de píxeles activados, ya que responde directamente a los cambios de intensidad de la imagen. Canny genera una detección más fina y selectiva, porque incluye pasos adicionales como suavizado, supresión de no máximos y doble umbral con histéresis. Por ello, en esta imagen Canny ofrece bordes más definidos, mientras que Sobel resalta más zonas y resulta más dependiente del valor de umbral elegido.
+Para visualizar las posiciones seleccionadas se dibujan líneas horizontales rojas sobre las filas y líneas verticales azules sobre las columnas que alcanzan al menos el 90 % de sus respectivos valores máximos.
+
+![Filas y columnas seleccionadas mediante Sobel](resultados/sobel_filas_columnas.jpg)
+
+También se representa el número de píxeles blancos encontrado en cada fila y columna. La línea discontinua indica en ambos casos el umbral correspondiente al 90 % del máximo.
+
+![Distribución de píxeles por filas y columnas](resultados/sobel_graficas.jpg)
+
+### Comparación con Canny
+
+Finalmente, se comparan visualmente los bordes obtenidos mediante Sobel umbralizado y Canny.
+
+![Comparación entre Sobel y Canny](resultados/sobel_vs_canny.jpg)
+
+Sobel, después del umbralizado, produce bordes generalmente más gruesos y una mayor cantidad de píxeles activados, ya que responde directamente a los cambios de intensidad de la imagen y el resultado depende del umbral seleccionado.
+
+Canny, en cambio, produce bordes más finos y definidos al incluir etapas adicionales como el suavizado, la supresión de no máximos y el doble umbral con histéresis. En esta imagen se puede observar cómo Canny ofrece una representación más selectiva de los bordes, mientras que Sobel resalta una mayor cantidad de zonas.
 
 ## Ampliación
 
