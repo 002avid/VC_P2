@@ -4,8 +4,8 @@ Este repositorio contiene la segunda práctica de la asignatura Visión por Comp
 
 ## Autores
 
-- Pablo Llopis Parrilla
-- David González Espino
+- [Pablo Llopis Parrilla](https://github.com/Putrici0)
+- [David González Espino](https://github.com/002avid)
 
 ## Contenido del repositorio
 
@@ -20,23 +20,27 @@ El cuaderno trabaja con la imagen `mandril.jpg`, que debe estar en el mismo dire
 
 ## TAREA: cuenta de píxeles blancos por filas en Canny
 
-Se parte de la imagen `mandril.jpg`, que se carga con `cv2.imread()`. Después se convierte a escala de grises con `cv2.cvtColor()` y se aplica el detector de bordes Canny mediante `cv2.Canny(gris, 100, 200)`.
+En esta tarea se parte de la imagen `mandril.jpg`, que se carga con `cv2.imread()` y se convierte a escala de grises mediante `cv2.cvtColor()`. Sobre esta imagen se aplica el detector de bordes Canny utilizando `cv2.Canny(gris, 100, 200)`.
 
-La tarea consiste en contar los píxeles blancos por filas, en lugar de hacerlo por columnas. Para ello se utiliza `cv2.reduce()` sobre la imagen de Canny, sumando los valores de cada fila. Como la salida de Canny contiene píxeles con valores 0 o 255, el resultado se divide entre 255 para obtener el número real de píxeles blancos.
+El objetivo es contar los píxeles blancos presentes en cada fila de la imagen obtenida con Canny. Para ello se utiliza `cv2.reduce()`, sumando los valores de los píxeles de cada fila. Como la imagen de Canny es binaria y contiene valores 0 para el fondo y 255 para los bordes, estas sumas permiten conocer la cantidad de píxeles pertenecientes a bordes que existen en cada fila.
 
-A partir del conteo se calcula `maxfil`, que representa el máximo número de píxeles blancos encontrado en una misma fila. En la ejecución realizada se obtiene:
+A partir de estos valores se obtiene `maxfil`, que representa el máximo número de píxeles blancos encontrados en una misma fila. Se seleccionan posteriormente aquellas filas que contienen al menos el 90 % de dicho máximo.
 
-- Valor máximo de píxeles blancos en una fila: 220.
-- Filas con un número de píxeles blancos mayor o igual que el 90 % de `maxfil`: 6, 12, 15, 20, 21, 88 y 100.
-- Número total de filas que cumplen la condición: 7.
+En la ejecución realizada se obtiene:
 
-Para visualizar el resultado, se convierte la imagen de Canny a BGR y se dibujan líneas horizontales rojas sobre las filas seleccionadas mediante `cv2.line()`. Además, se genera una gráfica con Matplotlib que representa la proporción de píxeles blancos por fila.
+- Máximo de píxeles blancos en una fila: **220**.
+- Filas que alcanzan al menos el 90 % del máximo: **6, 12, 15, 20, 21, 88 y 100**.
+- Número total de filas seleccionadas: **7**.
 
-Las filas resaltadas indican las zonas de la imagen donde Canny ha detectado una mayor concentración de bordes.
+### Resultado
 
+Para visualizar el resultado, se dibujan líneas horizontales rojas sobre las filas seleccionadas en la imagen obtenida mediante Canny. Junto a ella se representa la proporción de píxeles blancos encontrada en cada fila.
+
+![Análisis de píxeles blancos por filas mediante Canny](resultados/canny_filas.jpg)
+
+Los valores más altos de la gráfica corresponden a las filas en las que Canny ha detectado una mayor concentración de píxeles pertenecientes a bordes. Estas filas son las que aparecen resaltadas en rojo sobre la imagen.
 
 ## Ampliación
-
 
 ## TAREA: umbralizado de Sobel y conteo por filas y columnas
 
