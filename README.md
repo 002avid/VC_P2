@@ -86,6 +86,16 @@ Canny, en cambio, produce bordes más finos y definidos al incluir etapas adicio
 
 ## TAREA: propuesta propia
 
+En esta propuesta se usa la webcam para generar una estela de movimiento en tiempo real. La parte principal es la detección de bordes con Sobel en los ejes X e Y, ya que permite localizar las zonas donde la intensidad cambia con más fuerza. Antes de aplicarlo se usa un filtro gaussiano para reducir ruido y evitar que pequeños cambios de la cámara se detecten como movimiento.
+
+El valor `valorUmbralSobel = 150` se utiliza para quedarse solo con los bordes más marcados. Si este valor fuera más bajo aparecerían más bordes, incluyendo ruido; si fuera más alto solo se conservarían cambios muy fuertes. Después, el Sobel umbralizado del frame actual se compara con el del frame anterior mediante `cv2.absdiff()`. Con esto se obtiene `dif`, que representa qué bordes han cambiado entre ambos frames.
+
+Sobre esa diferencia se aplica un segundo umbral de valor `30` para crear `mascaraMovimiento`, eliminando cambios muy pequeños. Luego se calcula `mov = np.mean(dif)`, que sirve como medida aproximada de la cantidad de movimiento: valores bajos indican pocos cambios y valores altos indican cambios más bruscos. Para evitar ruido se ignoran valores menores que `1`. A partir de ahí, el movimiento se colorea en azul si `mov < 1.5`, en verde si `mov < 3` y en rojo para movimientos más rápidos.
+
+Por último, la máscara se dilata con un kernel de `5x5` para que la estela sea más visible. Se guardan como máximo 6 estelas anteriores, eliminando la más antigua cuando se supera ese número. Así se consigue que el movimiento reciente se vea con más intensidad y que los rastros anteriores se vayan apagando.
+
+### Resultado
+
 ![Demostración de la propuesta](resultados/task3.gif)
 
 ## Ampliación
