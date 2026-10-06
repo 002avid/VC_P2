@@ -46,8 +46,6 @@ Para visualizar el resultado, se dibujan líneas horizontales rojas sobre las fi
 
 Los valores más altos de la gráfica corresponden a las filas en las que Canny ha detectado una mayor concentración de píxeles pertenecientes a bordes. Estas filas son las que aparecen resaltadas en rojo sobre la imagen.
 
-## Ampliación
-
 ## TAREA: umbralizado de Sobel y conteo por filas y columnas
 
 En esta tarea se utiliza el operador Sobel para detectar cambios de intensidad en la imagen. Antes de aplicar Sobel, la imagen en escala de grises se suaviza mediante un filtro gaussiano. Posteriormente se calculan las derivadas horizontal y vertical y se combinan para obtener la imagen de bordes.
@@ -83,8 +81,6 @@ Sobel, después del umbralizado, produce bordes generalmente más gruesos y una 
 
 Canny, en cambio, produce bordes más finos y definidos al incluir etapas adicionales como el suavizado, la supresión de no máximos y el doble umbral con histéresis. En esta imagen se puede observar cómo Canny ofrece una representación más selectiva de los bordes, mientras que Sobel resalta una mayor cantidad de zonas.
 
-## Ampliación
-
 ## TAREA: propuesta propia
 
 En esta propuesta se usa la webcam para generar una estela de movimiento en tiempo real. La parte principal es la detección de bordes con Sobel en los ejes X e Y, ya que permite localizar las zonas donde la intensidad cambia con más fuerza. Antes de aplicarlo se usa un filtro gaussiano para reducir ruido y evitar que pequeños cambios de la cámara se detecten como movimiento.
@@ -99,8 +95,7 @@ Por último, la máscara se dilata con un kernel de `5x5` para que la estela sea
 
 ![Demostración de la propuesta](resultados/task3_full.gif)
 
-## Ampliación
-
 ## Fuentes y herramientas utilizadas
 
 - Repositorio completo de la práctica proporcionado por el profesor, usado como enunciado y referencia principal: https://github.com/otsedom/otsedom.github.io/tree/main/VC/P2
+- ChatGPT, usado como apoyo para resumir la documentación sobre OpenCV, NumPy y Matplotlib durante el desarrollo de la práctica: https://chatgpt.com/
