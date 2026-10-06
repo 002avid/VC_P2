@@ -86,7 +86,7 @@ Canny, en cambio, produce bordes más finos y definidos al incluir etapas adicio
 
 ## TAREA: propuesta propia
 
-![Demostración de la ppropuesta](resultados/task3.gif)
+![Demostración de la propuesta](resultados/task3.gif)
 
 ## Ampliación
 
