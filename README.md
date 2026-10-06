@@ -97,7 +97,7 @@ Por último, la máscara se dilata con un kernel de `5x5` para que la estela sea
 
 ### Resultado
 
-![Demostración de la propuesta](resultados/task3.gif)
+![Demostración de la propuesta](resultados/task3_full.gif)
 
 ## Ampliación
 
