@@ -16,6 +16,7 @@ Este repositorio contiene la segunda práctica de la asignatura Visión por Comp
   - `sobel_filas_columnas.jpg`: filas y columnas que alcanzan al menos el 90 % del máximo sobre la imagen de Sobel umbralizada.
   - `sobel_graficas.jpg`: gráficas del número de píxeles de borde encontrados por filas y columnas.
   - `sobel_vs_canny.jpg`: comparación visual entre los resultados obtenidos mediante Sobel umbralizado y Canny.
+  - `task3.gif`: demostración de la propuesta propia de estelas de movimiento con la webcam.
 
 ## Instalación y ejecución
 
